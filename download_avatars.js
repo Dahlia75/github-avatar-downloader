@@ -1,6 +1,7 @@
 var request = require('request');
 var fs = require('fs');
 var args = process.argv.slice(2);
+var token = require('./secrets.js')
 if (args.length < 2){
   console.log('Please enter repository owner and repository name')
 } else {
@@ -10,7 +11,8 @@ if (args.length < 2){
     var options = {
       url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
       headers: {
-        'User-Agent': 'request'
+        'User-Agent': 'request',
+        'Authorization': token.GITHUB_TOKEN
       }
     };
 
